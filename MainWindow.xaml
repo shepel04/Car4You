@@ -1,0 +1,130 @@
+﻿<Window x:Class="Car4You.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Car4You.MVVM.ViewModel"
+        xmlns:local="clr-namespace:Car4You"
+        mc:Ignorable="d"
+        Title="" 
+        Height="600" 
+        Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <!--End of window properties-->
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+
+
+    <Border Background="#272537" 
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="667*"/>                
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21" />
+                <RowDefinition Height="54"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.Row="0" 
+                       Grid.ColumnSpan="4"
+                       Fill="#22202f"
+                       RadiusX="15"
+                       RadiusY="40" Margin="5,0,5,0" MouseDown="TopPanel_MouseDown" MouseMove="TopPanel_MouseMove" MouseUp="TopPanel_MouseUp"/>
+
+            <!-- Left-Top label-->
+            <TextBlock Text="Wheels4You"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="22"
+                       Margin="20,2,0,0" Grid.Row="1" Height="29" Width="118"/>
+
+            <!--Button stack-->
+            <StackPanel Grid.Row="2" >
+
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}" 
+                             Width="200"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+
+                <RadioButton Content="Favourites"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Width="200"/>
+
+                <RadioButton Content="Settings"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Width="200"
+                             Command="{Binding SettingsViewCommand}"/>
+
+            </StackPanel>
+
+            <ContentControl Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="10,10,10,10"
+                            Content="{Binding CurrentView}" Grid.ColumnSpan="3"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,20,0">
+
+                <!--Collapse app icon-->
+                <Image x:Name="MinimizeWindowIcon" 
+                                  
+                Height="13"
+                Width="13"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Source="/Images/minWindow.png" 
+                MouseLeftButtonUp="CollapseWindowIcon_Click"/>
+
+                <!--Maximaze app icon-->
+                <Image x:Name="CloseAppIcon_Copy" 
+                Height="13"
+                Width="13" 
+                VerticalAlignment="Center"                   
+                Source="/Images/maxWindow.png" 
+                MouseLeftButtonUp="MinMaxWindowIcon_Click" 
+                Margin="8,0,0,0"/>
+                
+                <!--Close app icon-->
+                <Image x:Name="CloseAppIcon" 
+                Grid.Column="3" 
+                HorizontalAlignment="Left" 
+                Height="12"
+                Width="12"
+                Margin="10,0,0,0" 
+                VerticalAlignment="Center"
+                MouseLeftButtonUp="CloseWindowIcon_Click"
+                Source="/Images/closeWindow.png"/>
+
+                
+
+                
+            </StackPanel>
+            
+
+
+
+
+        </Grid>
+    </Border>
+</Window>
