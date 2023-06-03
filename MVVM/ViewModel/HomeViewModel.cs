@@ -7,22 +7,26 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Car4You.MVVM.Model;
+using Car4You.MVVM.Model.Data;
 using Car4You.MVVM.Model.DTO;
 
 namespace Car4You.MVVM.ViewModel
 {
     class HomeViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<CarDTO> _cars;
-        public ObservableCollection<CarDTO> Cars
+        private List<CarDTO> allCars = DataWorker.GetAllCars();
+
+        public List<CarDTO> AllCars 
         {
-            get { return _cars; }
-            set
-            {
-                _cars = value;
-                OnPropertyChanged();
+            get { return allCars; }
+            set 
+            { 
+                allCars = value;
+                OnPropertyChanged(nameof(AllCars));                   
             }
         }
+
+        
 
         // Implement the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;

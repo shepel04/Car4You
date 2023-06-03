@@ -8,14 +8,14 @@ namespace Car4You.MVVM.Model
 {
     class Car
     {
-        private int _id;
+        private double _id;
         private string? _brand;
         private string? _model;
-        private int? _year;
+        private string? _year;
         private string? _price;
         private string? _body;
-        private int? _mileage;
-        private double? _engine;
+        private double? _mileage;
+        private double? _volume;
         private string? _fuel;
         private double? _consumption;
         private string? _gear;
@@ -25,7 +25,7 @@ namespace Car4You.MVVM.Model
         private string? _url;
 
         
-        public int Id
+        public double Id
         {
             get { return _id; }
             set { _id = value; }
@@ -42,7 +42,7 @@ namespace Car4You.MVVM.Model
             get { return _model; }
             set { _model = value; }
         }
-        public int? Year
+        public string? Year
         {
             get { return _year; }
             set { _year = value; }
@@ -57,15 +57,15 @@ namespace Car4You.MVVM.Model
             get { return _body; }
             set { _body = value; }
         }
-        public int? Mileage
+        public double? Mileage
         {
             get { return _mileage; }
             set { _mileage = value; }
         }
-        public double? Engine
+        public double? Volume
         {
-            get { return _engine; }
-            set { _engine = value; }
+            get { return _volume; }
+            set { _volume = value; }
         }
         public string? Fuel
         {
@@ -104,7 +104,10 @@ namespace Car4You.MVVM.Model
         }
 
 
-
+        public override string ToString()
+        {
+            return $"{Brand} {Model} {Year}";
+        }
 
 
 

@@ -9,12 +9,12 @@ namespace Car4You.MVVM.Model.Data
 
         public ApplicationContext()
         {
-            //Database.EnsureCreated();
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-56B2CCP\\SQLEXPRESS;Database=Cars;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-56B2CCP\\SQLEXPRESS;Database=Carsdb;Trusted_Connection=True;TrustServerCertificate=True");
         }
     }
 }
