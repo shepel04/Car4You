@@ -18,5 +18,15 @@ namespace Car4You.MVVM.Model.Data
                 return db.Cars.ToList();
             }
         }
+
+        public static string GetAmountOfAllItems()
+        {
+            using (var db = new ApplicationContext())
+            {
+                int itemCount = db.Cars.Count();
+                return itemCount.ToString();
+            }
+        }
+        
     }
 }

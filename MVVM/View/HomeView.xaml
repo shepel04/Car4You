@@ -17,10 +17,11 @@
         <local:FirstPhotoUrlConverter x:Key="FirstPhotoUrlConverter" />
         <local:WidthMinusConverter x:Key="WidthMinusConverter" />
         <Style x:Key="CustomTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="0,10,0,0"/>
             <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
         <Style x:Key="SeparatorStyle" TargetType="Separator">
@@ -31,19 +32,39 @@
 
     <Grid>
 
+        <StackPanel Orientation="Horizontal" 
+                        Grid.Column="1" 
+                        Grid.Row="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="40,0,0,0">
+
+            <TextBlock Text="Всього автомобілів у базі:" 
+                           Foreground="White" 
+                           FontSize="24"                      
+                           Width="300"/>
+
+            <TextBlock 
+                           Text="{Binding CarAmount}" 
+                           Foreground="White" 
+                           FontSize="24"/>
+
+        </StackPanel>
+
         <ListBox x:Name="carListBox" ItemsSource="{Binding AllCars}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  ScrollViewer.CanContentScroll="True"
                  ScrollViewer.PanningMode="Both"
                  ScrollViewer.PanningDeceleration="0.2"
-                 ScrollViewer.PanningRatio="0.2">
+                 ScrollViewer.PanningRatio="0.2"
+                 Margin="0,40,0,0">
             
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5">
                         <!-- auto card -->
-                        <materialDesign:Card UniformCornerRadius="10" Background="Aqua" Margin="0,0,20,0" Height="350" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
+                        <materialDesign:Card UniformCornerRadius="10" Background="#5ABF73" Margin="0,0,20,70" Height="290" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
 
                             <Grid>
 
@@ -53,7 +74,7 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 
-                                    <Image Margin="20,20,0,0" Width="350" Height="310" Stretch="Uniform" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <Image Margin="20,20,10,0" Width="350" Height="250" Stretch="Uniform" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" >
                                         <!--<Image.Clip>
                                             <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,350,310"/>
                                         </Image.Clip>-->                                    
@@ -63,20 +84,13 @@
                                     </Image>
 
                                 <StackPanel Grid.Column="1" Width="70" HorizontalAlignment="Left" Orientation="Vertical" Margin="0,20,0,0">
-                                    <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Марка:" FontWeight="Bold"/>
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
+                                    <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Марка:"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Модель:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Рік:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Ціна:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Об'єм:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Паливо:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Коробка:" />
-                                    <Separator Style="{StaticResource SeparatorStyle}"/>
                                 </StackPanel>
 
 

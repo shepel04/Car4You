@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,7 +16,8 @@ namespace Car4You.MVVM.ViewModel
     class HomeViewModel : INotifyPropertyChanged
     {
         private List<CarDTO> allCars = DataWorker.GetAllCars();
-
+        private string carAmount = DataWorker.GetAmountOfAllItems();
+        
         public List<CarDTO> AllCars 
         {
             get { return allCars; }
@@ -23,6 +25,16 @@ namespace Car4You.MVVM.ViewModel
             { 
                 allCars = value;
                 OnPropertyChanged(nameof(AllCars));                   
+            }
+        }
+
+        public string CarAmount
+        {
+            get { return carAmount; }
+            set 
+            {
+                carAmount = value; 
+                OnPropertyChanged(nameof(CarAmount)); 
             }
         }
 

@@ -12,9 +12,16 @@
                               HorizontalAlignment="Stretch"
                               Background="{TemplateBinding Background}">
 
+                            <Image Source="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                               Width="48"
+                               Height="48"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"/>  
+
                             <TextBlock Text="{TemplateBinding Content}"
                                        VerticalAlignment="Center"
-                                       Margin="50,0,0,0"/>
+                                       Margin="70,0,0,0"
+                                       FontWeight="Bold"/>
 
 
                         </Grid>
@@ -35,7 +42,7 @@
         <Style.Triggers>
             <Trigger Property="IsChecked" 
                      Value="True">
-                <Setter Property="Background" Value="#22202f" />
+                <Setter Property="Background" Value="#195942" />
             </Trigger>
         </Style.Triggers>
            

@@ -9,8 +9,11 @@
 
   <ItemGroup>
     <None Remove="Images\closeWindow.png" />
+    <None Remove="Images\homeIcon.png" />
     <None Remove="Images\maxWindow.png" />
     <None Remove="Images\minWindow.png" />
+    <None Remove="Images\searchIcon.png" />
+    <None Remove="Images\settingsIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,8 +32,11 @@
 
   <ItemGroup>
     <Resource Include="Images\closeWindow.png" />
+    <Resource Include="Images\homeIcon.png" />
     <Resource Include="Images\maxWindow.png" />
     <Resource Include="Images\minWindow.png" />
+    <Resource Include="Images\searchIcon.png" />
+    <Resource Include="Images\settingsIcon.png" />
   </ItemGroup>
 
 </Project>
