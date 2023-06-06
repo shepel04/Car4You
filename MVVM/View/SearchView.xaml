@@ -4,15 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Car4You.MVVM.View"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Car4You.MVVM.View.SearchView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewModel="clr-namespace:Car4You.MVVM.ViewModel" x:Class="Car4You.MVVM.View.SearchView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:SearchViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         
-
-        <Button Content="Пошук" HorizontalAlignment="Center" Height="39" Margin="0,161,0,0" VerticalAlignment="Top" Width="86" Background="#5ABF73" BorderBrush="#5ABF73"/>
-        <materialDesign:PopupBox>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="156" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="156" VerticalAlignment="Top" Margin="0,10,0,0">
 
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Марка"/>
@@ -24,11 +26,11 @@
 
                 </StackPanel>
                 <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0" HorizontalAlignment="Right">
-                    <ComboBox x:Name="BrandCB" Style="{StaticResource ComboBoxTheme}"/>
-                    <ComboBox x:Name="ModelCB" Style="{StaticResource ComboBoxTheme}"/>
+                <ComboBox x:Name="BrandCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Brands}" SelectedItem="{Binding SelectedBrand, Mode=TwoWay}"/>
+                <ComboBox x:Name="ModelCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel, Mode=TwoWay}"/>
                     <StackPanel x:Name="YearSP" Orientation="Horizontal" Margin="0,10,0,0">
-                        <ComboBox x:Name="FromYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" />
-                        <ComboBox x:Name="ToYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" Margin="10,0,0,0"/>
+                    <ComboBox x:Name="FromYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" SelectedItem="{Binding FromYear, Mode=TwoWay}"/>
+                    <ComboBox x:Name="ToYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" SelectedItem="{Binding ToYear, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
                     <StackPanel x:Name="PriceSP" Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBox x:Name="FromPriceCB" Style="{StaticResource TextBoxTheme}" />
@@ -66,7 +68,10 @@
                     <ComboBox x:Name="Color" Style="{StaticResource ComboBoxTheme}"/>
                 </StackPanel>
             </StackPanel>
-        </materialDesign:PopupBox>
+
+        <Button Content="Пошук" Command="{Binding SearchCommand}" Foreground="White" HorizontalAlignment="Center" Height="30" Margin="0,170,0,0" VerticalAlignment="Top" Width="90" Background="#5ABF73" BorderBrush="#5ABF73"/>
+
+
 
     </Grid>
 </UserControl>

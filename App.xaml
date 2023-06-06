@@ -32,6 +32,8 @@
                 <view:SettingsView/>
             </DataTemplate>
 
+            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
