@@ -1,0 +1,72 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Car4You.MVVM.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Car4You.MVVM.View.SearchView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        
+
+        <Button Content="Пошук" HorizontalAlignment="Center" Height="39" Margin="0,161,0,0" VerticalAlignment="Top" Width="86" Background="#5ABF73" BorderBrush="#5ABF73"/>
+        <materialDesign:PopupBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="156" VerticalAlignment="Top">
+
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Марка"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Модель"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Рік"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Ціна"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Тип кузова"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Пробіг"/>
+
+                </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0" HorizontalAlignment="Right">
+                    <ComboBox x:Name="BrandCB" Style="{StaticResource ComboBoxTheme}"/>
+                    <ComboBox x:Name="ModelCB" Style="{StaticResource ComboBoxTheme}"/>
+                    <StackPanel x:Name="YearSP" Orientation="Horizontal" Margin="0,10,0,0">
+                        <ComboBox x:Name="FromYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" />
+                        <ComboBox x:Name="ToYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel x:Name="PriceSP" Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBox x:Name="FromPriceCB" Style="{StaticResource TextBoxTheme}" />
+                        <TextBox x:Name="ToPriceCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <ComboBox x:Name="BodyCB" Style="{StaticResource ComboBoxTheme}"/>
+                    <StackPanel x:Name="MileageSP" Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBox x:Name="FromMileageCB" Style="{StaticResource TextBoxTheme}" />
+                        <TextBox x:Name="ToMileageCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Об'єм двигуна"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Паливо"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Витрата палива"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="КПП"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Привід"/>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" Text="Колір"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Left">
+                    <StackPanel x:Name="VolumeSP" Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBox x:Name="FromVolumeCB" Style="{StaticResource TextBoxTheme}" />
+                        <TextBox x:Name="ToVolumeCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <ComboBox x:Name="Fuel" Style="{StaticResource ComboBoxTheme}"/>
+                    <StackPanel x:Name="ConsumptionSP" Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBox x:Name="FromConsumptioCB" Style="{StaticResource TextBoxTheme}" />
+                        <TextBox x:Name="ToConsumptionCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <ComboBox x:Name="Gear" Style="{StaticResource ComboBoxTheme}"/>
+                    <ComboBox x:Name="Drive" Style="{StaticResource ComboBoxTheme}"/>
+                    <ComboBox x:Name="Color" Style="{StaticResource ComboBoxTheme}"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:PopupBox>
+
+    </Grid>
+</UserControl>

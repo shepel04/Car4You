@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ComboBox"
+           x:Key="CBWithTBTheme">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Text="test"/>
+                                <TextBox Text="test"/>
+                            </StackPanel>
+                            
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    
+</ResourceDictionary>

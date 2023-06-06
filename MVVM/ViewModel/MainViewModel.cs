@@ -10,8 +10,13 @@ namespace Car4You.MVVM.ViewModel
     class MainViewModel : ObservableObject
     {
         public RelayCommand HomeViewCommand { get; set; }
+
+        public RelayCommand SearchViewCommand { get; set; }
+
         public RelayCommand SettingsViewCommand { get; set; }
+
         public HomeViewModel HomeVM { get; set; }
+        public SearchViewModel SearchVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
 
         private object _currentView;
@@ -30,6 +35,7 @@ namespace Car4You.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
+            SearchVM = new SearchViewModel();
             SettingsVM = new SettingsViewModel();
 
             CurrentView = HomeVM;
@@ -37,6 +43,11 @@ namespace Car4You.MVVM.ViewModel
             HomeViewCommand = new RelayCommand(o =>
             {
                 CurrentView = HomeVM;
+            });
+
+            SearchViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = SearchVM;
             });
 
             SettingsViewCommand = new RelayCommand(o =>
