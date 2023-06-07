@@ -15,7 +15,7 @@
     <Grid>
         
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="156" VerticalAlignment="Top" Margin="0,10,0,0">
-
+            <!--Right input labels-->
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Марка"/>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Модель"/>
@@ -24,25 +24,27 @@
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Тип кузова"/>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Пробіг"/>
 
+                <!--left search input column-->
                 </StackPanel>
                 <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0" HorizontalAlignment="Right">
-                <ComboBox x:Name="BrandCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Brands}" SelectedItem="{Binding SelectedBrand, Mode=TwoWay}"/>
-                <ComboBox x:Name="ModelCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel, Mode=TwoWay}"/>
+                    <ComboBox x:Name="BrandCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Brands}" SelectedItem="{Binding SelectedBrand, Mode=TwoWay}"/>
+                    <ComboBox x:Name="ModelCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel, Mode=TwoWay}"/>
                     <StackPanel x:Name="YearSP" Orientation="Horizontal" Margin="0,10,0,0">
-                    <ComboBox x:Name="FromYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" SelectedItem="{Binding FromYear, Mode=TwoWay}"/>
-                    <ComboBox x:Name="ToYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" SelectedItem="{Binding ToYear, Mode=TwoWay}" Margin="10,0,0,0"/>
+                        <ComboBox x:Name="FromYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" ItemsSource="{Binding Years}" SelectedItem="{Binding FromYear, Mode=TwoWay}"/>
+                        <ComboBox x:Name="ToYearCB" Style="{StaticResource EmbeddedComboBoxTheme}" ItemsSource="{Binding Years}" SelectedItem="{Binding ToYear, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
                     <StackPanel x:Name="PriceSP" Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBox x:Name="FromPriceCB" Style="{StaticResource TextBoxTheme}" />
-                        <TextBox x:Name="ToPriceCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                        <TextBox x:Name="FromPriceTB" Style="{StaticResource TextBoxTheme}" Text="{Binding FromPrice, Mode=TwoWay}" />
+                        <TextBox x:Name="ToPriceTB" Style="{StaticResource TextBoxTheme}" Text="{Binding ToPrice, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <ComboBox x:Name="BodyCB" Style="{StaticResource ComboBoxTheme}"/>
+                <ComboBox x:Name="BodyCB" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Bodies}" SelectedItem="{Binding SelectedBody, Mode=TwoWay}"/>
                     <StackPanel x:Name="MileageSP" Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBox x:Name="FromMileageCB" Style="{StaticResource TextBoxTheme}" />
-                        <TextBox x:Name="ToMileageCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    <TextBox x:Name="FromMileageTB" Style="{StaticResource TextBoxTheme}" Text="{Binding FromMileage, Mode=TwoWay}"/>
+                    <TextBox x:Name="ToMileageTB" Style="{StaticResource TextBoxTheme}" Text="{Binding ToMileage, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
                 </StackPanel>
 
+                <!--Right input labels-->
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Об'єм двигуна"/>
                     <TextBlock Style="{StaticResource TextBlockTheme}" Text="Паливо"/>
@@ -53,19 +55,20 @@
 
                 </StackPanel>
 
+                <!--Right search input column-->
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Left">
                     <StackPanel x:Name="VolumeSP" Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBox x:Name="FromVolumeCB" Style="{StaticResource TextBoxTheme}" />
-                        <TextBox x:Name="ToVolumeCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    <TextBox x:Name="FromVolumeCB" Style="{StaticResource TextBoxTheme}" Text="{Binding FromVolume, Mode=TwoWay}"/>
+                    <TextBox x:Name="ToVolumeCB" Style="{StaticResource TextBoxTheme}" Text="{Binding ToVolume, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <ComboBox x:Name="Fuel" Style="{StaticResource ComboBoxTheme}"/>
+                <ComboBox x:Name="Fuel" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Fuels}" SelectedItem="{Binding SelectedFuel, Mode=TwoWay}"/>
                     <StackPanel x:Name="ConsumptionSP" Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBox x:Name="FromConsumptioCB" Style="{StaticResource TextBoxTheme}" />
-                        <TextBox x:Name="ToConsumptionCB" Style="{StaticResource TextBoxTheme}" Margin="10,0,0,0"/>
+                    <TextBox x:Name="FromConsumptioCB" Style="{StaticResource TextBoxTheme}" Text="{Binding FromConsumption, Mode=TwoWay}"/>
+                    <TextBox x:Name="ToConsumptionCB" Style="{StaticResource TextBoxTheme}" Text="{Binding ToConsumption, Mode=TwoWay}" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <ComboBox x:Name="Gear" Style="{StaticResource ComboBoxTheme}"/>
-                    <ComboBox x:Name="Drive" Style="{StaticResource ComboBoxTheme}"/>
-                    <ComboBox x:Name="Color" Style="{StaticResource ComboBoxTheme}"/>
+                <ComboBox x:Name="Gear" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Gears}" SelectedItem="{Binding SelectedGear, Mode=TwoWay}"/>
+                <ComboBox x:Name="Drive" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Drives}" SelectedItem="{Binding SelectedDrive, Mode=TwoWay}"/>
+                <ComboBox x:Name="Color" Style="{StaticResource ComboBoxTheme}" ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
 
