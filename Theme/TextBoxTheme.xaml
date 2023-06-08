@@ -4,9 +4,11 @@
     <Style TargetType="TextBox"
            x:Key="TextBoxTheme">
         <Style.Setters>
-            <Setter Property="Height" Value="15"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Background" Value="#5ABF73"/>
+            <Setter Property="BorderBrush" Value="#195942"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
 
         </Style.Setters>

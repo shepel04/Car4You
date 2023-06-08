@@ -17,6 +17,9 @@ using System.Printing;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Car4You.MVVM.ViewModel
@@ -74,6 +77,40 @@ namespace Car4You.MVVM.ViewModel
                 }
             }
         }
+
+        private bool isPanelVisible;
+        public bool IsPanelVisible
+        {
+            get { return isPanelVisible; }
+            set
+            {
+                isPanelVisible = value;
+                OnPropertyChanged(nameof(IsPanelVisible));
+            }
+        }
+
+        private bool isButtonVisible = true;
+        public bool IsButtonVisible
+        {
+            get { return isButtonVisible; }
+            set
+            {
+                isButtonVisible = value;
+                OnPropertyChanged(nameof(IsButtonVisible));
+            }
+        }
+
+        private double listViewTranslateY;
+        public double ListViewTranslateY
+        {
+            get { return listViewTranslateY; }
+            set
+            {
+                listViewTranslateY = value;
+                OnPropertyChanged(nameof(ListViewTranslateY));
+            }
+        }
+
         public string SelectedModel { get; set; }
         public string FromYear { get; set; }
         public string ToYear { get; set; }
@@ -102,11 +139,11 @@ namespace Car4You.MVVM.ViewModel
             Brands = new ObservableCollection<string>();
             Models = new ObservableCollection<string>();
             Years = new ObservableCollection<string>();
-            Bodies = new ObservableCollection<string> { " ", "Седан", "Хетчбек", "Ліфтбек", "Купе", "Мінівен", "Позашляховик", "Кабріолет", "Універсал" };
-            Fuels = new ObservableCollection<string> { " ", "Бензин", "Дизель", "Газ / Бензин", "Гібрид", "Електро" };
-            Gears = new ObservableCollection<string> { " ", "Ручна", "Автомат", "Варіатор", "Типтронік", "Робот" };
-            Drives = new ObservableCollection<string> { " ", "Передній", "Задній", "Повний" };
-            Colors = new ObservableCollection<string> { " ", "Чорний", "Білий", "Сірий", "Синій", "Червоний", "Зелений", "Жовтий" };
+            Bodies = new ObservableCollection<string> { "", "Седан", "Хетчбек", "Ліфтбек", "Купе", "Мінівен", "Позашляховик", "Кабріолет", "Універсал" };
+            Fuels = new ObservableCollection<string> { "", "Бензин", "Дизель", "Газ/Бензин", "Гібрид", "Електро" };
+            Gears = new ObservableCollection<string> { "", "Ручна", "Автомат", "Варіатор", "Типтронік", "Робот" };
+            Drives = new ObservableCollection<string> { "", "Передній", "Задній", "Повний" };
+            Colors = new ObservableCollection<string> { "", "Чорний", "Білий", "Сірий", "Синій", "Червоний", "Зелений", "Жовтий" };
 
 
             PoputateYears();
@@ -131,6 +168,7 @@ namespace Car4You.MVVM.ViewModel
             // Initialize the SearchCommand with a RelayCommand or another implementation of ICommand
             SearchCommand = new RelayCommand(o =>
             {
+                TogglePanelVisibility();
                 Search();
             });
         }
@@ -147,6 +185,37 @@ namespace Car4You.MVVM.ViewModel
                 collection.Add(item);
             }
             return collection;
+        }
+
+        private ICommand togglePanelVisibilityCommand;
+        public ICommand TogglePanelVisibilityCommand
+        {
+            get
+            {
+                if (togglePanelVisibilityCommand == null)
+                {
+                    togglePanelVisibilityCommand = new RelayCommand(o =>
+                    {
+                        TogglePanelVisibility();
+                    });
+                }
+                return togglePanelVisibilityCommand;
+            }
+        }
+
+        private void TogglePanelVisibility()
+        {
+            IsPanelVisible = !IsPanelVisible;
+            IsButtonVisible = !IsButtonVisible;
+
+            if (IsPanelVisible)
+            {
+                ListViewTranslateY += 200; // Slide down by 200 pixels
+            }
+            else
+            {
+                ListViewTranslateY -= 200; // Slide up by 200 pixels
+            }
         }
 
         private void PoputateYears()
@@ -317,11 +386,11 @@ namespace Car4You.MVVM.ViewModel
                 }
                 var results = new List<CarDTO>();
                 // Retrieve the search results from the database
-                foreach (var item in query)
-                {
-                    results.Add(item);
-                }
-                //var results = query.ToList();
+                //foreach (var item in query)
+                //{
+                //    results.Add(item);
+                //}
+                results = query.ToList();
 
                 // Update the SearchResults collection with the retrieved results
                 SearchResults.Clear();

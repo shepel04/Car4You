@@ -100,7 +100,7 @@
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Year}" />
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Price}" />
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Volume}" />
-                                    <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Fuel}" />
+                                    <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Fuel}" Margin="-5,10,0,0"/>
                                     <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Gear}" />
                                 </StackPanel>
                                 

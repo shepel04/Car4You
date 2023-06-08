@@ -3,7 +3,7 @@
     <Style TargetType="TextBlock" 
            x:Key="TextBlockTheme">
         <Style.Setters>
-            <Setter Property="Height" Value="15"/>
+            <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="90"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="0,10,0,0"/>
