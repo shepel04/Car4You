@@ -63,7 +63,8 @@
                              Width="200"
                              IsChecked="True"
                              Margin="0,0,0,0"
-                             Command="{Binding HomeViewCommand}">
+                             Command="{Binding HomeViewCommand}"
+                             Cursor="Hand">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="/Images/homeIcon.png"/>
                     </RadioButton.Tag>
@@ -76,7 +77,8 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Width="200"
-                             Command="{Binding SearchViewCommand}">
+                             Command="{Binding SearchViewCommand}"
+                             Cursor="Hand">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="/Images/searchIcon.png"/>
                     </RadioButton.Tag>
@@ -89,7 +91,8 @@
                             FontSize="14"
                             Style="{StaticResource MenuButtonTheme}"
                             Width="200"
-                            Command="{Binding SettingsViewCommand}">
+                            Command="{Binding SettingsViewCommand}"
+                            Cursor="Hand">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="/Images/settingsIcon.png"/>
                     </RadioButton.Tag>

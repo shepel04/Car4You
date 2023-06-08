@@ -35,20 +35,21 @@
     <Grid>
 
             <!--Car card-->
-            <ListView x:Name="carListBox2" ItemsSource="{Binding SearchResults}" 
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            <ListView x:Name="carListBox2" ItemsSource="{Binding SearchResults}"                 
+                 ScrollViewer.CanContentScroll="True" 
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 ScrollViewer.CanContentScroll="True"
-                 ScrollViewer.PanningMode="Both"
-                 ScrollViewer.PanningDeceleration="0.2"
-                 ScrollViewer.PanningRatio="0.2"
-                 Margin="0,84,0,0">
+                 Margin="0,85,0,0"
+                 VirtualizingPanel.ScrollUnit="Pixel">
+
+
+            
             <ListView.RenderTransform>
-                <TranslateTransform Y="{Binding ListViewTranslateY}" />
-            </ListView.RenderTransform> 
+                    <TranslateTransform Y="{Binding ListViewTranslateY}" />
+                </ListView.RenderTransform> 
 
             <ListView.ItemTemplate>
                     <DataTemplate>
+                        
                         <Grid Margin="5">
                             <!-- auto card -->
                             <materialDesign:Card UniformCornerRadius="10" Background="#5ABF73" Margin="0,0,20,10" Height="290" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
@@ -99,12 +100,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-       
 
-        
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="20,50,0,0">
+            <TextBlock Text="Знайдено автомобілів: " Style="{StaticResource TextBlockTheme}" Width="138"/>
+            <TextBlock Text="{Binding AmountOfResults}" Style="{StaticResource TextBlockTheme}" Width="81"/>
+        </StackPanel>
         
         <!--Hiding panel-->
-        <Grid VerticalAlignment="Top">
+        <Grid VerticalAlignment="Top" Background="#1A734A">
+            
             <Button Content="Панель пошуку"
             Visibility="{Binding IsButtonVisible,
                                  Converter={StaticResource BooleanToVisibilityConverter}}"

@@ -37,27 +37,24 @@
                         Grid.Row="2"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
-                        Margin="40,0,0,0">
+                        Margin="20,5,0,0">
 
             <TextBlock Text="Всього автомобілів у базі:" 
                            Foreground="White" 
-                           FontSize="24"                      
-                           Width="300"/>
+                           FontSize="18"                      
+                           Width="220"/>
 
             <TextBlock 
                            Text="{Binding CarAmount}" 
                            Foreground="White" 
-                           FontSize="24"/>
+                           FontSize="18"/>
 
         </StackPanel>
 
         <ListBox x:Name="carListBox" ItemsSource="{Binding AllCars}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 ScrollViewer.CanContentScroll="True"
-                 ScrollViewer.PanningMode="Both"
-                 ScrollViewer.PanningDeceleration="0.2"
-                 ScrollViewer.PanningRatio="0.2"
+                 VirtualizingPanel.ScrollUnit="Pixel"
                  Margin="0,40,0,0">
             
             <ListBox.ItemTemplate>

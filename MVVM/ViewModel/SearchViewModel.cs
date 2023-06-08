@@ -33,7 +33,7 @@ namespace Car4You.MVVM.ViewModel
 
         public ObservableCollection<CarDTO> searchResults;
 
-        // Properties bound to the controls in your view
+        
         public ObservableCollection<string> Brands { get; set; }
         public ObservableCollection<string> Models { get; set; }
         public ObservableCollection<string> Years { get; set; }
@@ -43,10 +43,8 @@ namespace Car4You.MVVM.ViewModel
         public ObservableCollection<string> Drives { get; set; }
         public ObservableCollection<string> Colors { get; set; }
 
-        // Add more properties for other search parameters
 
-        // Collection bound to the data grid to display search results
-
+        private int amountOfResults = 0;
 
         public ObservableCollection<CarDTO> SearchResults
         {
@@ -111,6 +109,16 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
+        public int AmountOfResults
+        {
+            get { return amountOfResults; }
+            set
+            {
+                amountOfResults = value;
+                OnPropertyChanged(nameof(AmountOfResults));
+            }
+        }
+
         public string SelectedModel { get; set; }
         public string FromYear { get; set; }
         public string ToYear { get; set; }
@@ -127,11 +135,14 @@ namespace Car4You.MVVM.ViewModel
         public string SelectedGear { get; set; }
         public string SelectedDrive { get; set; }
         public string SelectedColor { get; set; }
+        
+
+
 
 
         public SearchViewModel()
         {
-            dbContext = new ApplicationContext(); // Replace with your DbContext class
+            dbContext = new ApplicationContext();
 
             SearchResults = new ObservableCollection<CarDTO>();
 
@@ -165,7 +176,7 @@ namespace Car4You.MVVM.ViewModel
             //    }
             //};
 
-            // Initialize the SearchCommand with a RelayCommand or another implementation of ICommand
+            
             SearchCommand = new RelayCommand(o =>
             {
                 TogglePanelVisibility();
@@ -398,6 +409,7 @@ namespace Car4You.MVVM.ViewModel
                 {
                     SearchResults.Add(car);
                 }
+                AmountOfResults = SearchResults.Count;
             }
 
         }
