@@ -26,5 +26,14 @@ namespace Car4You.MVVM.View
             InitializeComponent();
             DataContext = new SearchViewModel();
         }
+
+        private void CarWindowOpen_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var listViewItem = sender as ListViewItem;
+            var viewModel = DataContext as SearchViewModel;
+
+            // Invoke the command in the ViewModel
+            viewModel?.OpenCarWindowCommand.Execute(listViewItem.DataContext);
+        }
     }
 }

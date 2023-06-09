@@ -2,6 +2,7 @@
 using Car4You.MVVM.Model;
 using Car4You.MVVM.Model.Data;
 using Car4You.MVVM.Model.DTO;
+using Car4You.MVVM.View;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -58,6 +60,7 @@ namespace Car4You.MVVM.ViewModel
 
         // Command bound to the search button
         public System.Windows.Input.ICommand SearchCommand { get; set; }
+        public ICommand OpenCarWindowCommand { get; private set; }
 
         // Properties of user search controls
         private string selectedBrand;
@@ -159,7 +162,6 @@ namespace Car4You.MVVM.ViewModel
 
             PoputateYears();
 
-            Brands.Add(string.Empty);
             PopulateBrands();
             if (Brands != null)
             {
@@ -176,7 +178,12 @@ namespace Car4You.MVVM.ViewModel
             //    }
             //};
 
-            
+            OpenCarWindowCommand = new RelayCommand(o =>
+            {
+                var carWindow = new CarView();
+                carWindow.Show();
+            });
+
             SearchCommand = new RelayCommand(o =>
             {
                 TogglePanelVisibility();
@@ -244,6 +251,7 @@ namespace Car4You.MVVM.ViewModel
         private void PopulateBrands()
         {
             Brands.Clear();
+            Brands.Add(string.Empty);
             var brands = dbContext.Cars.Select(c => c.Brand).Distinct().ToList();
             foreach (var brand in brands)
             {
