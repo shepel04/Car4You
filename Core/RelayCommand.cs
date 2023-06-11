@@ -7,6 +7,7 @@ namespace Car4You.Core
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
+        private Action openCarWindow;
 
         public event EventHandler CanExecuteChanged
         {
@@ -18,6 +19,11 @@ namespace Car4You.Core
         {
             _execute = execute;
             _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action openCarWindow)
+        {
+            this.openCarWindow = openCarWindow;
         }
 
         public bool CanExecute(object parameter)

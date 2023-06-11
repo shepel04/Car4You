@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Car4You.MVVM.Model.DTO;
 using Car4You.MVVM.ViewModel;
 
 namespace Car4You.MVVM.View
@@ -25,6 +26,21 @@ namespace Car4You.MVVM.View
         {
             InitializeComponent();
             DataContext = new HomeViewModel();
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected CarDTO instance
+            var selectedCar = (sender as ListViewItem).Content as CarDTO;
+
+            // Create an instance of CarView
+            CarWindow carView = new CarWindow(selectedCar);
+
+            // Assign the selected CarDTO as the DataContext of CarView
+            carView.DataContext = selectedCar;
+
+            // Show the CarView window
+            carView.Show();
         }
     }
 }

@@ -51,13 +51,19 @@
 
         </StackPanel>
 
-        <ListBox x:Name="carListBox" ItemsSource="{Binding AllCars}" 
+        <ListView x:Name="carListBox" ItemsSource="{Binding AllCars}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  VirtualizingPanel.ScrollUnit="Pixel"
-                 Margin="0,40,0,0">
-            
-            <ListBox.ItemTemplate>
+                 Margin="0,50,0,0">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5">
                         <!-- auto card -->
@@ -76,7 +82,7 @@
                                             <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,350,310"/>
                                         </Image.Clip>-->                                    
                                     <Image.Source>
-                                            <Binding Path="Photo" Converter="{StaticResource FirstPhotoUrlConverter}"/>
+                                            <Binding Path="Photo"  Converter="{StaticResource FirstPhotoUrlConverter}"/>
                                         </Image.Source>
                                     </Image>
 
@@ -138,8 +144,8 @@
                         
                     </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
 
 
 

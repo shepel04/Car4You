@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Car4You.MVVM.Model.DTO;
+using Car4You.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +17,53 @@ using System.Windows.Shapes;
 namespace Car4You.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для CarView.xaml
+    /// Логика взаимодействия для CarWindow.xaml
     /// </summary>
-    public partial class CarView : Window
+    public partial class CarWindow : Window
     {
         private bool isDragging = false;
         private Point startDragPoint;
 
-        public CarView()
+
+        public CarWindow(CarDTO selectedCar)
         {
             InitializeComponent();
+            DataContext = new CarViewModel();
         }
+        public CarWindow()
+        {
+                       
+        }
+
+        public void UpdateCarImageSource(string imageUrl)
+        {
+            carImage.Source = new BitmapImage(new Uri(imageUrl));
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //private void DatabaseConnection()
+        //{
+        //    string mySqlCon = "server=127.0.0.1;user=root;database=cars_db;password=;";
+        //    MySqlConnection mySqlConnection = new MySqlConnection(mySqlCon);
+        //    try
+        //    {
+        //        mySqlConnection.Open();
+        //        MessageBox.Show("Connection success");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);    
+        //    }
+        //    finally 
+        //    {
+        //        mySqlConnection.Close();
+        //    }
+        //}
+
 
         private void TopPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {

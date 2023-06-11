@@ -103,14 +103,10 @@ namespace Car4You.MVVM.Model
             set { _url = value; }
         }
 
-
         public override string ToString()
         {
             return $"{Brand} {Model} {Year}";
         }
-
-
-
 
     }
 }

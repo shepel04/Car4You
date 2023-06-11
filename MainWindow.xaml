@@ -22,7 +22,9 @@
 
 
 
-    <Border Background="#1A734A" 
+    <Border Background="#1A734A"
+            BorderBrush="#5ABF73"
+            BorderThickness="2"
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>

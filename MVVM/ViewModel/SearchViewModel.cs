@@ -35,7 +35,9 @@ namespace Car4You.MVVM.ViewModel
 
         public ObservableCollection<CarDTO> searchResults;
 
-        
+        public event EventHandler<CarDTO> ItemDoubleClick;
+
+
         public ObservableCollection<string> Brands { get; set; }
         public ObservableCollection<string> Models { get; set; }
         public ObservableCollection<string> Years { get; set; }
@@ -122,6 +124,17 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
+        private CarDTO _selectedCar;
+        public CarDTO SelectedCar
+        {
+            get { return _selectedCar; }
+            set
+            {
+                _selectedCar = value;
+                OnPropertyChanged(nameof(SelectedCar));
+            }
+        }
+
         public string SelectedModel { get; set; }
         public string FromYear { get; set; }
         public string ToYear { get; set; }
@@ -138,16 +151,23 @@ namespace Car4You.MVVM.ViewModel
         public string SelectedGear { get; set; }
         public string SelectedDrive { get; set; }
         public string SelectedColor { get; set; }
-        
 
 
+        public ICommand ItemDoubleClickCommand => new RelayCommand(OpenCarWindow);
 
+        private void OpenCarWindow()
+        {
+            // Raise the ItemDoubleClick event
+            ItemDoubleClick?.Invoke(this, SelectedCar);
+            
+        }
 
         public SearchViewModel()
         {
             dbContext = new ApplicationContext();
 
             SearchResults = new ObservableCollection<CarDTO>();
+
 
             // Initialize properties and commands
             Brands = new ObservableCollection<string>();
@@ -178,18 +198,16 @@ namespace Car4You.MVVM.ViewModel
             //    }
             //};
 
-            OpenCarWindowCommand = new RelayCommand(o =>
-            {
-                var carWindow = new CarView();
-                carWindow.Show();
-            });
 
+            
             SearchCommand = new RelayCommand(o =>
             {
                 TogglePanelVisibility();
                 Search();
             });
         }
+
+       
 
         private static ObservableCollection<string> SortObservableCollection(ObservableCollection<string> collection)
         {
@@ -206,6 +224,8 @@ namespace Car4You.MVVM.ViewModel
         }
 
         private ICommand togglePanelVisibilityCommand;
+        private static object selectedItem;
+
         public ICommand TogglePanelVisibilityCommand
         {
             get

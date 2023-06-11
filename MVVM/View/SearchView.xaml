@@ -41,15 +41,16 @@
                  ScrollViewer.CanContentScroll="True" 
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  Margin="0,85,0,0"
-                 VirtualizingPanel.ScrollUnit="Pixel">
+                 VirtualizingPanel.ScrollUnit="Pixel"
+                 SelectedItem="{Binding SelectedCar}">
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseDoubleClick" Handler="CarWindowOpen_MouseDoubleClick"/>
-                </Style>
-            </ListView.ItemContainerStyle>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-            <ListView.RenderTransform>
+                <ListView.RenderTransform>
                     <TranslateTransform Y="{Binding ListViewTranslateY}" />
                 </ListView.RenderTransform>
 

@@ -1,4 +1,5 @@
-﻿using Car4You.MVVM.ViewModel;
+﻿using Car4You.MVVM.Model.DTO;
+using Car4You.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,22 @@ namespace Car4You.MVVM.View
         public SearchView()
         {
             InitializeComponent();
-            DataContext = new SearchViewModel();
+            DataContext = new SearchViewModel();            
         }
 
-        private void CarWindowOpen_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var listViewItem = sender as ListViewItem;
-            var viewModel = DataContext as SearchViewModel;
+            // Get the selected CarDTO instance
+            var selectedCar = (sender as ListViewItem).Content as CarDTO;
 
-            // Invoke the command in the ViewModel
-            viewModel?.OpenCarWindowCommand.Execute(listViewItem.DataContext);
+            // Create an instance of CarView
+            CarWindow carView = new CarWindow(selectedCar);
+
+            // Assign the selected CarDTO as the DataContext of CarView
+            carView.DataContext = selectedCar;
+
+            // Show the CarView window
+            carView.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Car4You.MVVM.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Car4You
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Chip_Click(object sender, RoutedEventArgs e)
