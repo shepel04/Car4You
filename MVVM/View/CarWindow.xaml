@@ -97,7 +97,7 @@
                     </Grid.RowDefinitions>
                 
                 <!--Photos-->
-                <StackPanel Grid.Row="0" Margin="0,100,0,20" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="0" Margin="0,10,0,20" Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <Button Content="&lt;" Width="40" HorizontalAlignment="Left" Background="#5ABF73" BorderBrush="#5ABF73" Margin="20,0,0,0"/>
                         <Image x:Name="carImage" Height="320" Width="500" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,15,0">

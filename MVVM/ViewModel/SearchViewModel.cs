@@ -1,7 +1,6 @@
 ﻿using Car4You.Core;
 using Car4You.MVVM.Model;
 using Car4You.MVVM.Model.Data;
-using Car4You.MVVM.Model.DTO;
 using Car4You.MVVM.View;
 using Microsoft.VisualBasic;
 using System;
@@ -33,9 +32,9 @@ namespace Car4You.MVVM.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ObservableCollection<CarDTO> searchResults;
+        public ObservableCollection<Car> searchResults;
 
-        public event EventHandler<CarDTO> ItemDoubleClick;
+        public event EventHandler<Car> ItemDoubleClick;
 
 
         public ObservableCollection<string> Brands { get; set; }
@@ -50,7 +49,7 @@ namespace Car4You.MVVM.ViewModel
 
         private int amountOfResults = 0;
 
-        public ObservableCollection<CarDTO> SearchResults
+        public ObservableCollection<Car> SearchResults
         {
             get { return searchResults; }
             set
@@ -124,8 +123,8 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
-        private CarDTO _selectedCar;
-        public CarDTO SelectedCar
+        private Car _selectedCar;
+        public Car SelectedCar
         {
             get { return _selectedCar; }
             set
@@ -166,7 +165,7 @@ namespace Car4You.MVVM.ViewModel
         {
             dbContext = new ApplicationContext();
 
-            SearchResults = new ObservableCollection<CarDTO>();
+            SearchResults = new ObservableCollection<Car>();
 
 
             // Initialize properties and commands
@@ -333,7 +332,7 @@ namespace Car4You.MVVM.ViewModel
                 // Both prices entered
                 if (!string.IsNullOrEmpty(FromPrice) && !string.IsNullOrEmpty(ToPrice))
                 {
-                    List<CarDTO> filteredCars = new List<CarDTO>();
+                    List<Car> filteredCars = new List<Car>();
                     foreach (var car in query)
                     {
                         if (IsValidPriceBoth(car.Price, Int32.Parse(FromPrice), Int32.Parse(ToPrice)))
@@ -345,7 +344,7 @@ namespace Car4You.MVVM.ViewModel
                 } // Entered only FromPrice
                 else if (!string.IsNullOrEmpty(FromPrice))
                 {
-                    List<CarDTO> filteredCars = new List<CarDTO>();
+                    List<Car> filteredCars = new List<Car>();
                     foreach (var car in query)
                     {
                         if (IsValidPriceFrom(car.Price, Int32.Parse(FromPrice)))
@@ -358,7 +357,7 @@ namespace Car4You.MVVM.ViewModel
                 else if (!string.IsNullOrEmpty(ToPrice))
                 {
 
-                    List<CarDTO> filteredCars = new List<CarDTO>();
+                    List<Car> filteredCars = new List<Car>();
                     foreach (var car in query)
                     {
                         if (IsValidPriceTo(car.Price, Int32.Parse(ToPrice)))
@@ -423,7 +422,7 @@ namespace Car4You.MVVM.ViewModel
                 {
                     query = query.Where(c => c.Color == SelectedColor);
                 }
-                var results = new List<CarDTO>();
+                var results = new List<Car>();
                 // Retrieve the search results from the database
                 //foreach (var item in query)
                 //{

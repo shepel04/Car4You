@@ -1,5 +1,4 @@
-﻿using Car4You.MVVM.Model.DTO;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Car4You.MVVM.Model.Data
 {
     public static class DataWorker
     {
-        public static List<CarDTO> GetAllCars()
+        public static List<Car> GetAllCars()
         {
             using (ApplicationContext db = new ApplicationContext())
             {

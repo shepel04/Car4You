@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model
 {
-    class Car
+    public class Car
     {
         private double _id;
         private string? _brand;

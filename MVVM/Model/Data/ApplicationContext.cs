@@ -1,11 +1,10 @@
-﻿using Car4You.MVVM.Model.DTO;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Car4You.MVVM.Model.Data
 {
     class ApplicationContext : DbContext
     {
-        public DbSet<CarDTO> Cars { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
         public ApplicationContext()
         {

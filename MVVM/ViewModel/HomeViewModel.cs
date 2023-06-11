@@ -9,16 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Car4You.MVVM.Model;
 using Car4You.MVVM.Model.Data;
-using Car4You.MVVM.Model.DTO;
 
 namespace Car4You.MVVM.ViewModel
 {
     class HomeViewModel : INotifyPropertyChanged
     {
-        private List<CarDTO> allCars = DataWorker.GetAllCars();
+        private List<Car> allCars = DataWorker.GetAllCars();
         private string carAmount = DataWorker.GetAmountOfAllItems();
         
-        public List<CarDTO> AllCars 
+        public List<Car> AllCars 
         {
             get { return allCars; }
             set 

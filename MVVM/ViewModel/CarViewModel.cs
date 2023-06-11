@@ -1,7 +1,6 @@
 ﻿using Car4You.Core;
 using Car4You.MVVM.Model;
 using Car4You.MVVM.Model.Data;
-using Car4You.MVVM.Model.DTO;
 using Car4You.MVVM.View;
 using System;
 using System.Collections.Generic;
@@ -19,9 +18,9 @@ namespace Car4You.MVVM.ViewModel
 {
     class CarViewModel : INotifyPropertyChanged
     {
-        private CarDTO _selectedCar;        
+        private Car _selectedCar;        
         public string Model { get; set; }
-        public CarDTO SelectedCar
+        public Car SelectedCar
         {
             get { return _selectedCar; }
             set
@@ -49,7 +48,7 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
-        public CarViewModel(CarDTO selectedCar)
+        public CarViewModel(Car selectedCar)
         {
             SelectedCar = selectedCar;
             

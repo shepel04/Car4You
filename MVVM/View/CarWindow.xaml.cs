@@ -1,4 +1,4 @@
-﻿using Car4You.MVVM.Model.DTO;
+﻿using Car4You.MVVM.Model;
 using Car4You.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Car4You.MVVM.View
         private Point startDragPoint;
 
 
-        public CarWindow(CarDTO selectedCar)
+        public CarWindow(Car selectedCar)
         {
             InitializeComponent();
             DataContext = new CarViewModel();
