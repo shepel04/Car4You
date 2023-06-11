@@ -18,7 +18,8 @@ namespace Car4You.MVVM.ViewModel
 {
     class CarViewModel : INotifyPropertyChanged
     {
-        private Car _selectedCar;        
+        private Car _selectedCar;
+        
         public string Model { get; set; }
         public Car SelectedCar
         {
@@ -29,7 +30,7 @@ namespace Car4You.MVVM.ViewModel
                 OnPropertyChanged(nameof(SelectedCar));
             }
         }
-               
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -50,8 +51,7 @@ namespace Car4You.MVVM.ViewModel
 
         public CarViewModel(Car selectedCar)
         {
-            SelectedCar = selectedCar;
-            
+            SelectedCar = selectedCar;           
             //ParseImageLinks(selectedCar);
         }
 

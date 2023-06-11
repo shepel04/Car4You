@@ -80,6 +80,22 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
+        private string _sortOrder;
+
+        public string SortOrder
+        {
+            get { return _sortOrder; }
+            set
+            {
+                if (_sortOrder != value)
+                {
+                    _sortOrder = value;
+                    SortSearchResults();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool isPanelVisible;
         public bool IsPanelVisible
         {
@@ -203,6 +219,7 @@ namespace Car4You.MVVM.ViewModel
             {
                 TogglePanelVisibility();
                 Search();
+                SortSearchResults();
             });
         }
 
@@ -238,6 +255,53 @@ namespace Car4You.MVVM.ViewModel
                 }
                 return togglePanelVisibilityCommand;
             }
+        }
+
+        private void SortSearchResults()
+        {
+            if (SortOrder == "За зростанням ціни")
+            {
+                SearchResults = new ObservableCollection<Car>(SearchResults.OrderBy(car => GetPriceValue(car.Price)));
+            }
+            else if (SortOrder == "За спаданням ціни")
+            {
+                SearchResults = new ObservableCollection<Car>(SearchResults.OrderByDescending(car => GetPriceValue(car.Price)));
+            }
+            // Здесь можно добавить другие варианты сортировки, если необходимо
+
+            // Вызовите OnPropertyChanged для уведомления об изменении коллекции SearchResults
+            OnPropertyChanged(nameof(SearchResults));
+        }
+
+        private double GetPriceValue(string price)
+        {
+            string cleanedPrice = "";
+            double result = 0;
+            if (string.IsNullOrEmpty(price))
+                return 0;
+
+            if (price.Contains("$"))
+            {
+               cleanedPrice = price.Replace(" ", "").Replace("$", "");
+                if (double.TryParse(cleanedPrice, out result))
+                    return result;
+            }
+            else if (price.Contains("€"))
+            {
+                cleanedPrice = price.Replace(" ", "").Replace("€", "");
+                if (double.TryParse(cleanedPrice, out result))
+                    result *= 1.0697;
+                    return result;
+            }
+            else if (price.Contains("грн"))
+            {
+                cleanedPrice = price.Replace(" ", "").Replace("грн", "");
+                if (double.TryParse(cleanedPrice, out result))
+                    result /= 37.3;
+                return result;
+            }
+
+            return 0;
         }
 
         private void TogglePanelVisibility()
@@ -434,7 +498,11 @@ namespace Car4You.MVVM.ViewModel
                 SearchResults.Clear();
                 foreach (var car in results)
                 {
-                    SearchResults.Add(car);
+                    if (car.Price.Contains("$") || car.Price.Contains("€") || car.Price.Contains("грн"))
+                    {
+                        SearchResults.Add(car);
+                    }
+                    
                 }
                 AmountOfResults = SearchResults.Count;
             }

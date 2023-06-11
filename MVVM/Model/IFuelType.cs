@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model
 {
-    class Gasoline
+    public interface IFuelType
     {
+        string? Fuel { get; set; }
+        string GetFuelType();
     }
 }

@@ -96,7 +96,7 @@ namespace Car4You.MVVM.View
 
         private void CloseWindowIcon_Click(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void MinMaxWindowIcon_Click(object sender, MouseButtonEventArgs e)

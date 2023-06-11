@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model
 {
-    public class Car
+    public class Car : IFuelType    
     {
         private double _id;
         private string? _brand;
@@ -101,6 +101,11 @@ namespace Car4You.MVVM.Model
         {
             get { return _url; }
             set { _url = value; }
+        }
+                
+        public string GetFuelType()
+        {
+            return Fuel ?? "Unknown";
         }
 
         public override string ToString()
