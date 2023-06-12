@@ -67,7 +67,7 @@
                 <DataTemplate>
                     <Grid Margin="5">
                         <!-- auto card -->
-                        <materialDesign:Card UniformCornerRadius="10" Background="#5ABF73" Margin="0,0,20,60" Height="290" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
+                        <materialDesign:Card UniformCornerRadius="10" Background="#5ABF73" Margin="20,30,20,30" Height="290" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
 
                             <Grid>
 

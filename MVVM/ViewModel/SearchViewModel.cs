@@ -60,7 +60,7 @@ namespace Car4You.MVVM.ViewModel
         }
 
         // Command bound to the search button
-        public System.Windows.Input.ICommand SearchCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public ICommand OpenCarWindowCommand { get; private set; }
 
         // Properties of user search controls

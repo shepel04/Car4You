@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local1="clr-namespace:Car4You.MVVM.View" 
         xmlns:local="clr-namespace:Car4You.MVVM.ViewModel"
-        xmlns:viewModel="clr-namespace:Car4You.MVVM.ViewModel"
+        xmlns:viewModel="clr-namespace:Car4You.MVVM.ViewModel" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-         Title="" 
-        Height="490" 
+        Title="" 
+        Height="570" 
         Width="920"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -22,6 +22,7 @@
 
     <Window.Resources>
         <local1:AllPhotoUrlConverter x:Key="AllPhotoUrlConverter" />
+        <local1:ToStringConverter x:Key="ToStringConverter" />
 
         <Style x:Key="CustomTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -37,8 +38,7 @@
     <Border Background="#1A734A"
             BorderBrush="#5ABF73"
             BorderThickness="2"
-            CornerRadius="20"
-            Height="490"
+            CornerRadius="20"            
             VerticalAlignment="Top">
 
         <Grid>
@@ -97,23 +97,20 @@
                     </Grid.RowDefinitions>
                 
                 <!--Photos-->
-                <StackPanel Grid.Row="0" Margin="0,10,0,20" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="0" Margin="0,10,0,30" Orientation="Horizontal" HorizontalAlignment="Center">
 
-                        <Button Content="&lt;" Width="40" HorizontalAlignment="Left" Background="#5ABF73" BorderBrush="#5ABF73" Margin="20,0,0,0"/>
-                        <Image x:Name="carImage" Height="320" Width="500" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,15,0">
-                        <Image.Source>
-                            <Binding Path="Photo"  Converter="{StaticResource AllPhotoUrlConverter}"/>
-                        </Image.Source>
-                    </Image>
+                        <Button Content="&lt;" Width="40" HorizontalAlignment="Left" Background="#5ABF73" BorderBrush="#5ABF73" Margin="20,0,0,0" Click="PreviousCar_Click"/>
+                       
+                        <Image x:Name="carImage" Height="420" Width="610" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,15,0"/>
+
+                        <Button Content="&gt;" Width="40" HorizontalAlignment="Right" Background="#5ABF73" BorderBrush="#5ABF73" Click="NextCar_Click"/>
+
+                </StackPanel>
+
                     
 
 
-
-                    <Button Content="&gt;" Width="40" HorizontalAlignment="Right"/>
-
-                </StackPanel>            
-                
-                <!--Header-->
+                    <!--Header-->
                 <Border BorderBrush="#5ABF73" CornerRadius="20" BorderThickness="3" HorizontalAlignment="Center" Height="50" Grid.Row="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Brand}" Margin="0,0,0,0" />

@@ -23,21 +23,43 @@ namespace Car4You.MVVM.View
     {
         private bool isDragging = false;
         private Point startDragPoint;
-
+        private Car selCar = new Car();
+        private List<string> allImages = new List<string>();
+        private int currentIndex = 0;
 
         public CarWindow(Car selectedCar)
         {
-            InitializeComponent();
-            DataContext = new CarViewModel();
+            InitializeComponent();            
+            selCar = selectedCar;
+            GetImages(selCar);
+            UpdateCarImageSource(0);
+            DataContext = new CarViewModel(selectedCar);
         }
         public CarWindow()
         {
                        
         }
 
-        public void UpdateCarImageSource(string imageUrl)
+        private void GetImages(Car selCar)
         {
-            carImage.Source = new BitmapImage(new Uri(imageUrl));
+            string[] urls = selCar.Photo.Replace(" ", string.Empty).Split(',');
+            foreach (var item in urls)
+            {
+                allImages.Add(item);
+            }
+        }
+
+        public void UpdateCarImageSource(int index)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(allImages[index]);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+
+            // Устанавливаем картинку в свойство Image.Source
+            carImage.Source = bitmap;
+            //carImage.Source = new BitmapImage(new Uri(allImages[index])) ;
         }
 
         private void Chip_Click(object sender, RoutedEventArgs e)
@@ -114,6 +136,26 @@ namespace Car4You.MVVM.View
         private void CollapseWindowIcon_Click(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void NextCar_Click(object sender, RoutedEventArgs e)
+        {
+            ++currentIndex;
+            if (currentIndex >= allImages.Count())
+            {
+                currentIndex = 0;
+            }
+            UpdateCarImageSource(currentIndex);
+        }
+
+        private void PreviousCar_Click(object sender, RoutedEventArgs e)
+        {
+            --currentIndex;
+            if (currentIndex < 0)
+            {
+                currentIndex = allImages.Count() - 1;
+            }
+            UpdateCarImageSource(currentIndex);
         }
     }
 }

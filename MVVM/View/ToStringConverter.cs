@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
 
-namespace Car4You.MVVM.ViewModel
+namespace Car4You.MVVM.View
 {
-    public class StringToImageConverter : IValueConverter
-    {        
+    public class ToStringConverter : IValueConverter
+    {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string imageUrl = value as string;
@@ -24,6 +22,6 @@ namespace Car4You.MVVM.ViewModel
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
-        }        
+        }
     }
 }

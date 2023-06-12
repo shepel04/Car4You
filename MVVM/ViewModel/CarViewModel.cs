@@ -19,7 +19,13 @@ namespace Car4You.MVVM.ViewModel
     class CarViewModel : INotifyPropertyChanged
     {
         private Car _selectedCar;
-        
+        private ObservableCollection<string> photoUrls;
+        private int currentIndex = 0;
+        private string currentPhotoUrl = "";
+        private string photoUrlBack;
+
+        public string PhotoUrlBack { get; set; }
+
         public string Model { get; set; }
         public Car SelectedCar
         {
@@ -49,48 +55,103 @@ namespace Car4You.MVVM.ViewModel
             }
         }
 
+        
+       
+        
+
         public CarViewModel(Car selectedCar)
         {
-            SelectedCar = selectedCar;           
+            photoUrls = new ObservableCollection<string>();
+            SelectedCar = selectedCar;
+            GetUrls(selectedCar);
+
+            DecreaseIndexCommand = new RelayCommand(o =>
+            {
+                DecreaseIndex();
+            });
+            IncreaseIndexCommand = new RelayCommand(o =>
+            {
+                IncreaseIndex();
+            });
+            
             //ParseImageLinks(selectedCar);
         }
-
-        
 
         public CarViewModel()
         {
             
+
+
         }
 
+        public ObservableCollection<string> PhotoUrls
+        {
+            get { return photoUrls; }
+            set
+            {
+                photoUrls = value;
+                OnPropertyChanged(nameof(PhotoUrls));
+                UpdateCurrentIndex();
+            }
+        }
 
-        //private void ParseImageLinks(CarDTO selectedCar)
-        //{
-        //    string[] images = selectedCar.Photo.Replace(" ", string.Empty).Split(",");
-        //    foreach (string image in images) 
-        //    {
-        //        Photo.Add(image);
-        //    }
-        //}
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                currentIndex = value;
+                OnPropertyChanged(nameof(CurrentIndex));
+                OnPropertyChanged(nameof(CurrentPhotoUrl));
+            }
+        }
 
+        public string CurrentPhotoUrl
+        {
+            get
+            {                                       
+                return currentPhotoUrl;                
+            }
 
+            set
+            {
+                currentPhotoUrl = value;
+                OnPropertyChanged(nameof(CurrentPhotoUrl));
+            }
+        }
 
-        //private void Next()
-        //{
-        //    CurrentIndex++;
-        //    if (CurrentIndex >= Items.Count)
-        //    {
-        //        CurrentIndex = 0;
-        //    }
-        //}
+        public ICommand DecreaseIndexCommand { get; }
 
-        //private void Previous()
-        //{
-        //    CurrentIndex--;
-        //    if (CurrentIndex < 0)
-        //    {
-        //        CurrentIndex = Items.Count - 1;
-        //    }
-        //}
+        public ICommand IncreaseIndexCommand { get; }
+
+        private void DecreaseIndex()
+        {
+            CurrentIndex--;
+        }
+
+        private void IncreaseIndex()
+        {
+            CurrentIndex++;
+        }
+
+        private void UpdateCurrentIndex()
+        {
+            if (PhotoUrls.Count > 0)
+                CurrentIndex = 0;
+            else
+                CurrentIndex = -1;
+        }
+
+        private void GetUrls(Car selectedCar)
+        {
+            string[] urls = selectedCar.Photo.Replace(" ", string.Empty).Split(',');
+            foreach (var item in urls)
+            {
+                photoUrls.Add(item);
+            }
+            CurrentPhotoUrl = photoUrls[0];
+        }
+        
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
