@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model
 {
-    public class Car : IPrice, IVehicle    
-    {
-        private double _id;
+    public class Car : Vehicle, IPrice, IVehicle    
+    {        
         private string? _brand;
         private string? _model;
         private string? _year;
@@ -26,12 +25,7 @@ namespace Car4You.MVVM.Model
         private string? _url;
 
         
-        public double Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-        
+           
         
         public string? Brand
         {

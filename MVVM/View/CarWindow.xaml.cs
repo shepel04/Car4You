@@ -56,12 +56,11 @@ namespace Car4You.MVVM.View
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.UriSource = new Uri(allImages[index]);
+
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.EndInit();
-
-            // Устанавливаем картинку в свойство Image.Source
-            carImage.Source = bitmap;
-            //carImage.Source = new BitmapImage(new Uri(allImages[index])) ;
+                        
+            carImage.Source = bitmap;            
         }
 
         private void Chip_Click(object sender, RoutedEventArgs e)

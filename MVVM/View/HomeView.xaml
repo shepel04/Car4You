@@ -40,14 +40,15 @@
                         Margin="20,5,0,0">
 
             <TextBlock Text="Всього автомобілів у базі:" 
-                           Foreground="White" 
-                           FontSize="18"                      
-                           Width="220"/>
+                       Foreground="White" 
+                       FontSize="18"                      
+                       Width="220"/>
 
             <TextBlock 
-                           Text="{Binding CarAmount}" 
-                           Foreground="White" 
-                           FontSize="18"/>
+                       Text="{Binding CarAmount}" 
+                       Foreground="White" 
+                       FontSize="18"/>
+                    
 
         </StackPanel>
 
