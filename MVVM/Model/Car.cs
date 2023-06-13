@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Car4You.MVVM.Model.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model
 {
-    public class Car : IFuelType    
+    public class Car : IPrice, IVehicle    
     {
         private double _id;
         private string? _brand;
@@ -31,7 +32,7 @@ namespace Car4You.MVVM.Model
             set { _id = value; }
         }
         
-
+        
         public string? Brand
         {
             get { return _brand; }
@@ -103,12 +104,41 @@ namespace Car4You.MVVM.Model
             set { _url = value; }
         }
                 
-        public string GetFuelType()
+        public string GetFuelType() 
         {
             return Fuel ?? "Unknown";
         }
 
-        public override string ToString()
+        public bool GetPrice()
+        {
+            int clearPrice = 0;
+            if (Year.Contains("$"))
+            {
+                clearPrice = Int32.Parse(Year.Replace(" ", string.Empty).Replace("$", string.Empty));
+            }
+            else if (Year.Contains("€"))
+            {
+                clearPrice = Int32.Parse(Year.Replace(" ", string.Empty).Replace("€", string.Empty));
+            }
+            else if (Year.Contains("грн"))
+            {
+                clearPrice = Int32.Parse(Year.Replace(" ", string.Empty).Replace("грн", string.Empty));
+            }
+
+            if (Int32.Parse(Year) >= 2000 && Int32.Parse(Year) <= 2006 && clearPrice < 5000)
+            {
+                return true;
+            }
+            else if (Int32.Parse(Year) >= 2006 && Int32.Parse(Year) <= 2010 && clearPrice < 7000)
+            {
+                return true;
+            }
+            {
+                return false;
+            }
+        }
+
+        public string GetVehicleDescription()
         {
             return $"{Brand} {Model} {Year}";
         }

@@ -35,10 +35,7 @@ namespace Car4You.MVVM.View
 
             // Create an instance of CarView
             CarWindow carView = new CarWindow(selectedCar);
-
-            // Assign the selected CarDTO as the DataContext of CarView
-            carView.DataContext = selectedCar;
-
+            
             // Show the CarView window
             carView.Show();
         }

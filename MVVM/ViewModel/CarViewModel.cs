@@ -26,6 +26,18 @@ namespace Car4You.MVVM.ViewModel
 
         public string PhotoUrlBack { get; set; }
 
+        private string header;
+        
+        public string Header
+        {
+            get { return header; }
+            set 
+            { 
+                header = value;
+                OnPropertyChanged(nameof(Header));
+            }
+        }
+
         public string Model { get; set; }
         public Car SelectedCar
         {
@@ -34,6 +46,22 @@ namespace Car4You.MVVM.ViewModel
             {
                 _selectedCar = value;
                 OnPropertyChanged(nameof(SelectedCar));
+                OnPropertyChanged(nameof(VehicleDescription));
+            }
+        }
+        public string VehicleDescription
+        {
+            get { return _selectedCar?.ToString(); }
+        }
+
+        private bool _isGoodPriceVisible;
+        public bool IsGoodPriceVisible
+        {
+            get { return _isGoodPriceVisible; }
+            set
+            {
+                _isGoodPriceVisible = value;
+                OnPropertyChanged(nameof(IsGoodPriceVisible));
             }
         }
 
@@ -56,13 +84,20 @@ namespace Car4You.MVVM.ViewModel
         }
 
         
-       
-        
+
+
+
+
 
         public CarViewModel(Car selectedCar)
         {
             photoUrls = new ObservableCollection<string>();
+            _selectedCar = selectedCar;
             SelectedCar = selectedCar;
+            IVehicle vehicle = selectedCar;
+            header = vehicle.GetVehicleDescription();
+            IPrice priceInterface = selectedCar;
+            IsGoodPriceVisible = priceInterface.GetPrice();
             GetUrls(selectedCar);
 
             DecreaseIndexCommand = new RelayCommand(o =>

@@ -87,7 +87,7 @@ namespace Car4You
 
         private void CloseWindowIcon_Click(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void MinMaxWindowIcon_Click(object sender, MouseButtonEventArgs e)

@@ -23,6 +23,7 @@
     <Window.Resources>
         <local1:AllPhotoUrlConverter x:Key="AllPhotoUrlConverter" />
         <local1:ToStringConverter x:Key="ToStringConverter" />
+        <local1:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
         <Style x:Key="CustomTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -113,9 +114,8 @@
                     <!--Header-->
                 <Border BorderBrush="#5ABF73" CornerRadius="20" BorderThickness="3" HorizontalAlignment="Center" Height="50" Grid.Row="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Brand}" Margin="0,0,0,0" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Model}" Margin="10,0,0,0" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Year}" Margin="10,0,0,0" />
+                            <TextBlock x:Name="CarHeader" Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Header}" Margin="0,0,0,0" />
+                        
                     </StackPanel>
                 </Border>
 
@@ -124,6 +124,7 @@
 
                 <Grid Grid.Row="2">
 
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
@@ -132,8 +133,8 @@
                     <StackPanel Grid.Column="0" Width="140" HorizontalAlignment="Right" Orientation="Vertical" Margin="0,20,50,0">
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Марка:"/>
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Модель:" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Рік:" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Ціна:" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Рік:" />                            
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Ціна:" />                               
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Об'єм:" />
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Паливо:" />
                         <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Коробка передач:" />
@@ -145,21 +146,30 @@
                     </StackPanel>
 
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="70,20,0,0" HorizontalAlignment="Left" Width="150">
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Brand}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Model}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Year}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Price}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Volume}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Fuel}" Margin="-5,10,0,0"/>
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Gear}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Body}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Consumption}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Drive}" />
-                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Color}" />
-                            <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Mileage, StringFormat={}{0} тис. км}" />
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="70,20,0,0" HorizontalAlignment="Left" Width="250">
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Brand}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Model}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Year}" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Price}"/>
+
+                                <Image Source="/Images/goodPriceIcon.png" Height="30" Width="80" Margin="-10,0,0,0" Stretch="Uniform" Visibility="{Binding IsGoodPriceVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+                            </StackPanel>
+                                
+                            
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Volume}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Fuel}" Margin="-5,10,0,0"/>
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Gear}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Body}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Consumption}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Drive}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Color}" />
+                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding SelectedCar.Mileage, StringFormat={}{0} тис. км}" />
                     </StackPanel>
-                </Grid>
+
+                    </Grid>
 
 
                 </Grid>

@@ -31,9 +31,11 @@ namespace Car4You.MVVM.View
         {
             InitializeComponent();            
             selCar = selectedCar;
+            DataContext = new CarViewModel(selCar);            
             GetImages(selCar);
             UpdateCarImageSource(0);
-            DataContext = new CarViewModel(selectedCar);
+            
+
         }
         public CarWindow()
         {

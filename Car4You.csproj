@@ -9,11 +9,16 @@
 
   <ItemGroup>
     <None Remove="Images\closeWindow.png" />
+    <None Remove="Images\goodPriceIcon.png" />
     <None Remove="Images\homeIcon.png" />
     <None Remove="Images\maxWindow.png" />
     <None Remove="Images\minWindow.png" />
     <None Remove="Images\searchIcon.png" />
     <None Remove="Images\settingsIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\goodPriceIcon.png" />
   </ItemGroup>
 
   <ItemGroup>

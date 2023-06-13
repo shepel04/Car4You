@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Car4You.MVVM.Model
+namespace Car4You.MVVM.Model.Data
 {
-    public interface IFuelType
+    public interface IVehicle
     {
-        string? Fuel { get; set; }
-        string GetFuelType();
+        string GetVehicleDescription();
     }
 }
