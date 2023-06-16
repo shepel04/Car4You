@@ -1,4 +1,5 @@
 ﻿using Car4You.MVVM.Model.Data;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,7 @@ namespace Car4You.MVVM.Model
         private string? _color;
         private string? _photo;
         private string? _url;
-
-        
+                
            
         
         public string? Brand
@@ -34,7 +34,7 @@ namespace Car4You.MVVM.Model
         }
         public string? Model
         {
-            get { return _model; }
+            get { return _model.Replace("/", string.Empty); }
             set { _model = value; }
         }
         public string? Year
@@ -44,8 +44,38 @@ namespace Car4You.MVVM.Model
         }
         public string? Price
         {
-            get { return _price; }
-            set { _price = value; }
+            get 
+            {
+                if (_price.Contains("грн"))
+                {
+                    double convertedPrice = Double.Parse(_price.Replace(" ", string.Empty).Replace("грн", string.Empty)) / 37.2;
+                    _price = $"{(int)convertedPrice} $";
+                    return _price;
+                }
+                else if (_price.Contains("€"))
+                {
+                    double convertedPrice = Double.Parse(_price.Replace(" ", string.Empty).Replace("€", string.Empty)) * 1.0697;
+                    _price = $"{(int)convertedPrice} $";
+                    return _price;
+                }
+                else
+                    return _price;
+            }
+            set 
+            {
+                if (value.Contains("грн"))
+                {
+                    double convertedPrice = Double.Parse(value.Replace(" ", string.Empty).Replace("грн", string.Empty)) / 37.2;
+                    _price = $"{convertedPrice} $";
+                }
+                else if (value.Contains("€"))
+                {
+                    double convertedPrice = Double.Parse(value.Replace(" ", string.Empty).Replace("€", string.Empty)) * 1.0697;
+                    _price = $"{convertedPrice} $";
+                }
+                else
+                _price = value;
+            }
         }
         public string? Body
         {

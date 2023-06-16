@@ -13,11 +13,11 @@ namespace Car4You.MVVM.ViewModel
 
         public RelayCommand SearchViewCommand { get; set; }
 
-        public RelayCommand SettingsViewCommand { get; set; }
+        public RelayCommand TableViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
         public SearchViewModel SearchVM { get; set; }
-        public SettingsViewModel SettingsVM { get; set; }
+        public TableViewModel TableVM { get; set; }
 
         private object _currentView;
 
@@ -36,7 +36,7 @@ namespace Car4You.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             SearchVM = new SearchViewModel();
-            SettingsVM = new SettingsViewModel();
+            TableVM = new TableViewModel();
 
             CurrentView = HomeVM;
 
@@ -50,9 +50,9 @@ namespace Car4You.MVVM.ViewModel
                 CurrentView = SearchVM;
             });
 
-            SettingsViewCommand = new RelayCommand(o =>
+            TableViewCommand = new RelayCommand(o =>
             {
-                CurrentView = SettingsVM;
+                CurrentView = TableVM;
             });
         }
     }

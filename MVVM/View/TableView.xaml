@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:Car4You.MVVM.View"
              xmlns:viewModel="clr-namespace:Car4You.MVVM.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             x:Class="Car4You.MVVM.View.SearchView"
+             x:Class="Car4You.MVVM.View.TableView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
-        <viewModel:SearchViewModel/>
+        <viewModel:TableViewModel/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
@@ -32,82 +32,106 @@
         </Style>
     </UserControl.Resources>
 
-    
-    
+
+
     <Grid>
 
-            <!--Car card-->
-            <ListView x:Name="carListBox2" ItemsSource="{Binding SearchResults}"                 
-                 ScrollViewer.CanContentScroll="True" 
-                 ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 Margin="0,85,0,0"
-                 VirtualizingPanel.ScrollUnit="Pixel"
-                 SelectedItem="{Binding SelectedCar}">
+        <!--Car list-->
+        
+            <Grid>
+                <!-- Car card -->
+                <DataGrid x:Name="carDataGrid" ItemsSource="{Binding SearchResults}"                 
+                ScrollViewer.CanContentScroll="True" 
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                Margin="0,85,0,0"
+                AutoGenerateColumns="False"
+                SelectedItem="{Binding SelectedCar}"
+                SelectionChanged="CarDataGrid_SelectionChanged">
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
+                
 
-                <ListView.RenderTransform>
+                <DataGrid.RenderTransform>
                     <TranslateTransform Y="{Binding ListViewTranslateY}" />
-                </ListView.RenderTransform>
+                </DataGrid.RenderTransform>
 
-            
-            <ListView.ItemTemplate>
-                    <DataTemplate>
+                <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Марка">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Brand}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Модель">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Model}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         
-                        <Grid Margin="5">
-                            <!-- auto card -->
-                            <materialDesign:Card UniformCornerRadius="10" Background="#5ABF73" Margin="0,0,20,10" Height="290" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Converter={StaticResource WidthMinusConverter}}">
+                        <DataGridTemplateColumn Header="Рік">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Year}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                                <Grid>
+                        <DataGridTemplateColumn Header="Ціна">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Price}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="400" ></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
+                    <DataGridTemplateColumn Header="Кузов">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Body}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                                    <Image Margin="20,20,10,0" Width="350" Height="250" Stretch="Uniform" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                                        <!--<Image.Clip>
-                                            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,350,310"/>
-                                        </Image.Clip>-->
-                                        <Image.Source>
-                                            <Binding Path="Photo" Converter="{StaticResource FirstPhotoUrlConverter}"/>
-                                        </Image.Source>
-                                    </Image>
+                    <DataGridTemplateColumn Header="Пробіг (тис.)">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Mileage}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                                    <StackPanel Grid.Column="1" Width="70" HorizontalAlignment="Left" Orientation="Vertical" Margin="0,20,0,0">
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Марка:"/>
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Модель:" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Рік:" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Ціна:" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Об'єм:" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Паливо:" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Коробка:" />
-                                    </StackPanel>
+                    <DataGridTemplateColumn Header="Паливо">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Fuel}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                        
+                    <DataGridTemplateColumn Header="Об'єм">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Volume}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
+                        <DataGridTemplateColumn Header="Колір">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Color}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        
 
-                                    <StackPanel Grid.Column="2" Orientation="Vertical" Margin="-20,20,0,0">
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Brand}" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Model}" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Year}" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Price}" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Volume}" />
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Fuel}" Margin="-5,10,0,0"/>
-                                        <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="{Binding Gear}" />
-                                    </StackPanel>
-
-                                </Grid>
-
-                            </materialDesign:Card>
-
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        
 
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="20,50,0,0">
@@ -121,10 +145,10 @@
                 <ComboBoxItem Content="За роком (спад.)"/>
             </ComboBox>
         </StackPanel>
-        
+
         <!--Hiding panel-->
         <Grid VerticalAlignment="Top" Background="#1A734A">
-            
+
             <Button Content="Панель пошуку"
             Visibility="{Binding IsButtonVisible,
                                  Converter={StaticResource BooleanToVisibilityConverter}}"

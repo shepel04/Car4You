@@ -22,7 +22,7 @@ namespace Car4You.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Car4You.MVVM.Model.DTO.CarDTO", b =>
+            modelBuilder.Entity("Car4You.MVVM.Model.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

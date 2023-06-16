@@ -9,7 +9,7 @@ namespace Car4You.MVVM.Model.Data
 {
     public class Vehicle
     {
-        private double _id;
+        protected double _id;
 
         public double Id
         {

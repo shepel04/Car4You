@@ -25,7 +25,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Car4You.MVVM.ViewModel
 {
-    class SearchViewModel : INotifyPropertyChanged
+    class TableViewModel : INotifyPropertyChanged
     {
 
         private readonly ApplicationContext dbContext;
@@ -177,7 +177,7 @@ namespace Car4You.MVVM.ViewModel
             
         }
 
-        public SearchViewModel()
+        public TableViewModel()
         {
             dbContext = new ApplicationContext();
 
@@ -230,7 +230,6 @@ namespace Car4You.MVVM.ViewModel
             List<string> sortedList = new List<string>(collection);
             sortedList.Sort();
 
-            // Очистите коллекцию и добавьте отсортированные элементы обратно в ObservableCollection
             collection.Clear();
             foreach (var item in sortedList)
             {

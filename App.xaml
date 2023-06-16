@@ -28,8 +28,8 @@
                 <view:SearchView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                <view:SettingsView/>
+            <DataTemplate DataType="{x:Type viewModel:TableViewModel}">
+                <view:TableView/>
             </DataTemplate>
 
             

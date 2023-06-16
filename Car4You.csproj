@@ -15,6 +15,7 @@
     <None Remove="Images\minWindow.png" />
     <None Remove="Images\searchIcon.png" />
     <None Remove="Images\settingsIcon.png" />
+    <None Remove="Images\tableIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +41,7 @@
     <Resource Include="Images\maxWindow.png" />
     <Resource Include="Images\minWindow.png" />
     <Resource Include="Images\searchIcon.png" />
-    <Resource Include="Images\settingsIcon.png" />
+    <Resource Include="Images\tableIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
