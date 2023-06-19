@@ -27,7 +27,8 @@ namespace Car4You.MVVM.ViewModel
         public string PhotoUrlBack { get; set; }
 
         private string header;
-        
+        private string carId;
+
         public string Header
         {
             get { return header; }
@@ -94,9 +95,14 @@ namespace Car4You.MVVM.ViewModel
             photoUrls = new ObservableCollection<string>();
             _selectedCar = selectedCar;
             SelectedCar = selectedCar;
-            IVehicle vehicle = selectedCar;
+            IVehicle vehicle = new Car();
+            vehicle = selectedCar;
+            IVehicle vehId = new Vehicle();
+            vehId = selectedCar;
+            carId = vehId.GetVehicleDescription();
             header = vehicle.GetVehicleDescription();
-            IPrice priceInterface = selectedCar;
+            IPrice priceInterface = new Car();
+            priceInterface = selectedCar;
             IsGoodPriceVisible = priceInterface.GetPrice();
             GetUrls(selectedCar);
 

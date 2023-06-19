@@ -113,13 +113,17 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="20,50,0,0">
             <TextBlock Text="Знайдено автомобілів: " Style="{StaticResource TextBlockTheme}" Width="138"/>
             <TextBlock Text="{Binding AmountOfResults}" Style="{StaticResource TextBlockTheme}" Width="50"/>
-            <ComboBox SelectedValue="{Binding SortOrder}" SelectedValuePath="Content" Style="{StaticResource ComboBoxTheme}" HorizontalAlignment="Left" Margin="0,0,0,0">
-                <ComboBoxItem Content="Без сортування"/>
-                <ComboBoxItem Content="За зростанням ціни"/>
-                <ComboBoxItem Content="За спаданням ціни"/>
-                <ComboBoxItem Content="За роком (зрост.)"/>
-                <ComboBoxItem Content="За роком (спад.)"/>
-            </ComboBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="180,0,0,0">
+                <TextBlock Margin="0,10,0,0" Text="Сортування:" Style="{StaticResource TextBlockTheme}"/>
+                <ComboBox SelectedValue="{Binding SortOrder}" SelectedValuePath="Content" Style="{StaticResource ComboBoxTheme}" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <ComboBoxItem Content="Без сортування"/>
+                    <ComboBoxItem Content="За зростанням ціни"/>
+                    <ComboBoxItem Content="За спаданням ціни"/>
+                    <ComboBoxItem Content="За роком (зрост.)"/>
+                    <ComboBoxItem Content="За роком (спад.)"/>
+                </ComboBox>
+            </StackPanel>
+            
         </StackPanel>
         
         <!--Hiding panel-->

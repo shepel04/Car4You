@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Car4You.MVVM.Model.Data
 {
-    public class Vehicle
+    public class Vehicle : IVehicle
     {
         protected double _id;
 
@@ -15,6 +15,11 @@ namespace Car4You.MVVM.Model.Data
         {
             get { return _id; }
             set { _id = value; }
+        }
+
+        public string GetVehicleDescription()
+        {
+            return $"{Id}";
         }
 
     }
